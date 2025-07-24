@@ -1,46 +1,69 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="max-w-md mx-auto mt-10">
-    <h1 class="text-2xl font-bold mb-4">Register</h1>
-
-    @if ($errors->any())
-        <div class="bg-red-100 text-red-700 p-2 rounded mb-4">
-            {{ $errors->first() }}
-        </div>
-    @endif
-
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
-
-        <div class="mb-4">
-            <label for="full_name">Full Name</label>
-            <input type="text" name="full_name" id="full_name" class="w-full border rounded px-3 py-2 mt-1" required>
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Najasaka Logo"
+                class="mx-auto h-10 w-auto" />
+            <h2 class="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">Create your account</h2>
         </div>
 
-        <div class="mb-4">
-            <label for="phone_number">Phone Number</label>
-            <input type="text" name="phone_number" id="phone_number" class="w-full border rounded px-3 py-2 mt-1" required>
-        </div>
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-700 p-2 rounded mb-4">
+                    {{ $errors->first() }}
+                </div>
+            @endif
 
-        <div class="mb-4">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="w-full border rounded px-3 py-2 mt-1" required>
-        </div>
+            <form method="POST" action="{{ route('register') }}" class="space-y-6">
+                @csrf
 
-        <div class="mb-4">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="w-full border rounded px-3 py-2 mt-1" required>
-        </div>
+                <div>
+                    <label for="full_name" class="block text-sm font-medium text-gray-900">Full Name</label>
+                    <div class="mt-2">
+                        <input id="full_name" name="full_name" type="text" required autofocus
+                            class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+                </div>
 
-        <div class="mb-4">
-            <label for="password_confirmation">Confirm Password</label>
-            <input type="password" name="password_confirmation" id="password_confirmation" class="w-full border rounded px-3 py-2 mt-1" required>
-        </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-900">Email address</label>
+                    <div class="mt-2">
+                        <input id="email" name="email" type="email" required autocomplete="email"
+                            class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+                </div>
 
-        <div class="mb-4">
-            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Register</button>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
+                    <div class="mt-2">
+                        <input id="password" name="password" type="password" required autocomplete="new-password"
+                            class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-medium text-gray-900">Confirm
+                        Password</label>
+                    <div class="mt-2">
+                        <input id="password_confirmation" name="password_confirmation" type="password" required
+                            autocomplete="new-password"
+                            class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit"
+                        class="flex w-full justify-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                        Register
+                    </button>
+                </div>
+            </form>
+
+            <p class="mt-10 text-center text-sm text-gray-500">
+                Already have an account?
+                <a href="{{ route('login') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">Sign in</a>
+            </p>
         </div>
-    </form>
-</div>
+    </div>
 @endsection
